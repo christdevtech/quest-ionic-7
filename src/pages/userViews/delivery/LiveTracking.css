@@ -1,0 +1,95 @@
+.location-container, .delivery-informations {
+    width: 90vw;
+    background: rgb(33, 34, 33);
+    margin: auto;
+    margin: 50px auto 0vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 20px;
+    color: #fff;
+    box-shadow: 1px 1px 30px -10px lightgray;
+}
+.location-container .drivers-location, .location-container .drivers-destination {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+.location-container .drivers-location .icon,
+.location-container .drivers-destination .icon {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #fff;
+    color:rgb(33, 34, 33);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    box-shadow: 1px 1px 30px -10px lightgray;
+}
+
+.delivery-informations {
+    background-color: #fff;
+    color: rgb(33, 34, 33);
+}
+.delivery-informations .contact-agent {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+.delivery-informations .contact-agent .agent-info,
+.delivery-informations .contact-agent .contacts {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+.delivery-informations .contact-agent .contacts {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    margin-left: 10px;
+}
+.delivery-informations .contact-agent .agent-info .agent-pic {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.delivery-informations .contact-agent .contacts .call,
+.delivery-informations .contact-agent .contacts .message {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 3px 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 1px 50px 5px lightgray;
+}
+.call {
+    background-color: green;
+    color: #fff;
+}
+.message {
+    background-color: rgb(33, 34, 33);
+    color: #fff;
+}
+
+.package-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.package-info .status {
+    background-color: rgb(33, 34, 33);
+    color: #fff;
+    padding: 10px 30px 10px;
+    border-radius: 10px;
+}

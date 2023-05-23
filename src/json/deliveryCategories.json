@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Electronics",
+        "image": "https://icons8.com/icon/8576/multiple-devices"
+    },
+    {
+        "id": 2,
+        "name": "Documents",
+        "image": "https://icons8.com/icon/30450/google-docs"
+    },
+    {
+        "id": 3,
+        "name": "Fornitures",
+        "image": "https://icons8.com/icon/vyVBEmzBf2hF/furniture"
+    },
+    {
+        "id": 4,
+        "name": "Food",
+        "image": "https://icons8.com/icon/120104/kawaii-steak"
+    }
+]

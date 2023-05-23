@@ -1,18 +1,40 @@
 import {
+  IonAvatar,
+  IonCol,
   IonContent,
+  IonFooter,
+  IonGrid,
   IonIcon,
+  IonImg,
   IonItem,
   IonLabel,
   IonList,
   IonListHeader,
   IonMenu,
   IonMenuToggle,
-  IonNote,
-} from '@ionic/react';
+  IonRow,
+} from "@ionic/react";
+import { useHistory, useLocation } from "react-router-dom";
+import {
+  carSportOutline,
+  carSportSharp,
+  helpCircleOutline,
+  homeOutline,
+  homeSharp,
+  informationCircleOutline,
+  logOutOutline,
+  logOutSharp,
+  personCircleOutline,
+  personCircleSharp,
+  refreshOutline,
+  settingsOutline,
 
-import { useLocation } from 'react-router-dom';
-import { archiveOutline, archiveSharp, bookmarkOutline, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
-import './Menu.css';
+  // added by Ramses
+  carSharp,
+} from "ionicons/icons";
+import "./Menu.css";
+import defaultImg from "../assets/user.svg";
+import { useAuthContext } from "../context/AuthContext";
 
 interface AppPage {
   url: string;
@@ -21,77 +43,164 @@ interface AppPage {
   title: string;
 }
 
-const appPages: AppPage[] = [
-  {
-    title: 'Inbox',
-    url: '/page/Inbox',
-    iosIcon: mailOutline,
-    mdIcon: mailSharp
-  },
-  {
-    title: 'Outbox',
-    url: '/page/Outbox',
-    iosIcon: paperPlaneOutline,
-    mdIcon: paperPlaneSharp
-  },
-  {
-    title: 'Favorites',
-    url: '/page/Favorites',
-    iosIcon: heartOutline,
-    mdIcon: heartSharp
-  },
-  {
-    title: 'Archived',
-    url: '/page/Archived',
-    iosIcon: archiveOutline,
-    mdIcon: archiveSharp
-  },
-  {
-    title: 'Trash',
-    url: '/page/Trash',
-    iosIcon: trashOutline,
-    mdIcon: trashSharp
-  },
-  {
-    title: 'Spam',
-    url: '/page/Spam',
-    iosIcon: warningOutline,
-    mdIcon: warningSharp
-  }
-];
-
-const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-
 const Menu: React.FC = () => {
+  const { user, logout, langPack } = useAuthContext() ?? {};
+
+  const appPages: AppPage[] = [
+    {
+      title: langPack.home,
+      url: "/home",
+      iosIcon: homeOutline,
+      mdIcon: homeSharp,
+    },
+
+    {
+      title: langPack.account,
+      url: "/account",
+      iosIcon: personCircleOutline,
+      mdIcon: personCircleSharp,
+    },
+
+    {
+      title: langPack.menuDelivery,
+      url: "/delivery",
+      iosIcon: carSharp,
+      mdIcon: carSharp,
+    },
+
+    {
+      title: langPack.taxi,
+      url: "/taxi",
+      iosIcon: carSportOutline,
+      mdIcon: carSportSharp,
+    },
+  ];
+
+  const lowerMenu = [
+    { title: langPack.support, url: "/support", iosIcon: helpCircleOutline },
+    { title: langPack.info, url: "/info", iosIcon: informationCircleOutline },
+    {
+      title: langPack.settingsTitle,
+      url: "/settings",
+      iosIcon: settingsOutline,
+    },
+  ];
+  const history = useHistory();
+
   const location = useLocation();
+
+  const toProfile = () => {
+    history.push("/account");
+  };
+
+  const handleLogout = async () => {
+    await logout?.();
+    history.push("/locale");
+  };
+  const handleRefresh = () => {
+    window.location.reload();
+  };
 
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>Inbox</IonListHeader>
-          <IonNote>hi@ionicframework.com</IonNote>
+          {user ? (
+            <IonListHeader>
+              <IonMenuToggle>
+                <IonGrid>
+                  <IonRow onClick={toProfile}>
+                    <IonCol size="auto">
+                      {!user.photoURL ? (
+                        <IonAvatar className="profile-img">
+                          <IonImg src={defaultImg} alt="user avatar"></IonImg>
+                        </IonAvatar>
+                      ) : (
+                        <IonAvatar className="profile-img">
+                          <IonImg
+                            src={user.photoURL}
+                            alt="user avatar"
+                          ></IonImg>
+                        </IonAvatar>
+                      )}
+                    </IonCol>
+                    <IonCol id="mobile-menu-user-name">
+                      <span id="profile-tag">{langPack.profile}</span>
+                      <p id="username">
+                        {user ? user.displayName : "No current User"}
+                      </p>
+                    </IonCol>
+                  </IonRow>
+                </IonGrid>
+              </IonMenuToggle>
+            </IonListHeader>
+          ) : (
+            ""
+          )}
+          {/* <IonNote>hi@ionicframework.com</IonNote> */}
           {appPages.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
-                <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
-                  <IonIcon aria-hidden="true" slot="start" ios={appPage.iosIcon} md={appPage.mdIcon} />
+                <IonItem
+                  className={
+                    location.pathname === appPage.url ? "selected" : ""
+                  }
+                  routerLink={appPage.url}
+                  routerDirection="none"
+                  lines="none"
+                  detail={false}
+                >
+                  <IonIcon
+                    slot="start"
+                    ios={appPage.iosIcon}
+                    md={appPage.mdIcon}
+                  />
                   <IonLabel>{appPage.title}</IonLabel>
                 </IonItem>
               </IonMenuToggle>
             );
           })}
+          <IonMenuToggle>
+            <IonItem onClick={handleLogout} lines="none">
+              <IonIcon
+                ios={logOutOutline}
+                md={logOutSharp}
+                slot="start"
+              ></IonIcon>
+              <IonLabel>{langPack.signOut}</IonLabel>
+            </IonItem>
+          </IonMenuToggle>
+          <IonMenuToggle>
+            <IonItem onClick={handleRefresh} lines="none">
+              <IonIcon
+                ios={refreshOutline}
+                md={refreshOutline}
+                slot="start"
+              ></IonIcon>
+              <IonLabel>{langPack.refresh}</IonLabel>
+            </IonItem>
+          </IonMenuToggle>
         </IonList>
 
-        <IonList id="labels-list">
-          <IonListHeader>Labels</IonListHeader>
-          {labels.map((label, index) => (
-            <IonItem lines="none" key={index}>
-              <IonIcon aria-hidden="true" slot="start" icon={bookmarkOutline} />
-              <IonLabel>{label}</IonLabel>
-            </IonItem>
+        <IonFooter>
+          {lowerMenu.map((menuitem, index) => (
+            <IonMenuToggle key={index} autoHide={false}>
+              <IonItem
+                lines="none"
+                className={location.pathname === menuitem.url ? "selected" : ""}
+                routerLink={menuitem.url}
+                routerDirection="none"
+              >
+                <IonIcon
+                  slot="start"
+                  ios={menuitem.iosIcon}
+                  md={menuitem.iosIcon}
+                />
+                <IonLabel>{menuitem.title}</IonLabel>
+              </IonItem>
+            </IonMenuToggle>
           ))}
-        </IonList>
+        </IonFooter>
       </IonContent>
     </IonMenu>
   );

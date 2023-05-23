@@ -1,0 +1,111 @@
+ion-content ion-grid.main-grid {
+  height: 100%;
+  align-items: stretch;
+}
+ion-content ion-grid ion-row.main-row {
+  height: 100%;
+}
+
+.page-data {
+  text-align: center;
+}
+
+ion-content.auth-page {
+  --background: var(--app-dark-background);
+  --color: var(--app-color-4);
+}
+
+ion-list.list-md {
+  background: var(--transparent);
+}
+
+ion-item {
+  --background: var(--transparent);
+  --color: var(--app-color-4);
+  --highlight-height: 2px;
+  --highlight-color-focused: var(--app-color-1);
+  --highlight-color-valid: var(--app-color-1);
+  --highlight-color-invalid: var(--app-color-1);
+}
+
+ion-button {
+  --background: var(--app-color-1);
+  --color: var(--app-color-2);
+  font-weight: 700;
+  font-style: normal;
+}
+ion-button.sign-in-btn {
+  --background: var(--transparent);
+  --color: var(--app-color-4);
+  --border-color: var(--app-color-1);
+}
+#form1 {
+  padding-top: 2em;
+}
+
+small.features {
+  color: var(--app-color-1);
+}
+.padding-top-1 {
+  padding-top: 1em;
+}
+.padding-top-2 {
+  padding-top: 4em;
+}
+
+ion-button.yellow-b {
+  color: black;
+}
+
+.space-btns > ion-button.yellow-b {
+  margin-top: 1em;
+  --color: var(--app-dark-background);
+}
+
+ion-button#forgot-password {
+  margin-top: 2em;
+  --background: var(--transparent);
+  color: var(--app-color-1);
+}
+.space-types .yellow-b {
+  margin-top: 0.5em;
+}
+.space-types ion-item {
+  margin: 0.5em 0;
+  border-radius: 0.5em;
+}
+
+ion-button {
+  text-transform: none;
+}
+
+.swiper-slide.light {
+  background-color: var(--app-color-4);
+  color: var(--app-dark-background);
+}
+
+input {
+  border: none;
+  color: var(--app-dark-background);
+}
+ion-input#phone {
+  --padding-top: 1em;
+  --padding-bottom: 0.5em;
+  /* --padding-start: 1em; */
+}
+
+ion-checkbox {
+  --size: 22px;
+  --background-checked: var(--app-dark-background);
+}
+
+ion-checkbox::part(container) {
+  border-radius: 11px;
+  border: 2px solid var(--app-dark-background);
+}
+
+/* ion-input.phone-field {
+  --background: rgba(218, 207, 207, 0.05);
+  --padding-start: 2em;
+  border-radius: 9px;
+} */

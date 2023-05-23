@@ -1,0 +1,136 @@
+[
+    {
+        "id": 1,
+        "user": "Dave",
+        "fullname": "Dave Ojong",
+        "online_status": "online",
+        "current_location": "Douala",
+        "rating": 3,
+        "image": "https://ionicframework.com/docs/img/demos/avatar.svg",
+        "delivery_locations": [
+            {
+                "id": 2
+            },
+            {
+                "id": 1
+            },
+            {
+                "id": 5
+            }
+        ],
+        "category": [
+            {
+                "id": 1
+            },
+            {
+                "id": 4
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "user": "John",
+        "fullname": "John Serge",
+        "online_status": "offline",
+        "current_location": "Buea",
+        "rating": 5,
+        "image": "https://ionicframework.com/docs/img/demos/avatar.svg",
+        "delivery_locations": [
+            {
+                "id": 1
+            },
+            {
+                "id": 2
+            },
+            {
+                "id": 3
+            }
+        ],
+        "category": [
+            {
+                "id": 2
+            },
+            {
+                "id": 3
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "user": "Richie",
+        "fullname": "Richie Steve",
+        "online_status": "offline",
+        "current_location": "Yaounde",
+        "rating": 1,
+        "image": "https://ionicframework.com/docs/img/demos/avatar.svg",
+        "delivery_locations": [
+            {
+                "id": 1
+            },
+            {
+                "id": 4
+            }
+        ],
+        "category": [
+            {
+                "id": 2
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "user": "Mercy",
+        "fullname": "Mercy Odasy",
+        "online_status": "offline",
+        "current_location": "Tiko",
+        "rating": 5,
+        "image": "https://ionicframework.com/docs/img/demos/avatar.svg",
+        "delivery_locations": [
+            {
+                "id": 1
+            },
+            {
+                "id": 4
+            },
+            {
+                "id": 5
+            }
+        ],
+        "category": [
+            {
+                "id": 2
+            },
+            {
+                "id": 3
+            },
+            {
+                "id": 4
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "user": "Fabouel",
+        "fullname": "Fabouel Steve",
+        "online_status": "online",
+        "current_location": "Bafoussam",
+        "rating": 3,
+        "image": "https://ionicframework.com/docs/img/demos/avatar.svg",
+        "delivery_locations": [
+            {
+                "id": 1
+            },
+            {
+                "id": 3
+            },
+            {
+                "id": 5
+            }
+        ],
+        "category": [
+            {
+                "id": 1
+            }
+        ]
+    }
+]

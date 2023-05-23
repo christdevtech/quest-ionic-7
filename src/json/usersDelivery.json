@@ -1,0 +1,127 @@
+[
+    {
+        "name": "TV for Melvin",
+        "image": "../../assets/img/delivery-box.png",
+        "type": [
+            {
+                "id": 1
+            }
+        ],
+        "sender": [
+            {
+                "id": 1,
+                "name": "Ashu Hilda",
+                "image": ""
+            }
+        ],
+        "receiver": [
+            {
+                "id": 2,
+                "name": "Melvin Denise",
+                "image": ""
+            }
+        ],
+        "from": "Douala",
+        "to": "Yaounde",
+        "description": "Package to Melvin for her birthday",
+        "date_sent": "3rd March, 2023 7:30AM",
+        "approx_delivery_date": "05th March, 2023 5:30PM",
+        "status": "On Process",
+        "package_id": "#00458wwes82"
+    },
+    
+    {
+        "name": "Groceries",
+        "image": "../../assets/img/delivery-man.png",
+        "type": [
+            {
+                "id": 1,
+                "name": "Groceries"
+            }
+        ],
+        "sender": [
+            {
+                "id": 2,
+                "name": "Melvin Denise",
+                "image": ""
+            }
+        ],
+        "receiver": [
+            {
+                "id": 3,
+                "name": "Ada Kenneth",
+                "image": ""
+            }
+        ],
+        "from": "Yaounde",
+        "to": "Limbe",
+        "description": "To Ada Kenneth in Limbe",
+        "date_sent": "7rd March, 2023 11:50AM",
+        "approx_delivery_date": "07th March, 2023 7:30PM",
+        "status": "Delivered",
+        "package_id": "#00458iy6fb"
+    },
+
+    {
+        "name": "Bags and Sh...",
+        "type": [
+            {
+                "id": 1,
+                "name": "Groceries"
+            }
+        ],
+        "sender": [
+            {
+                "id": 2,
+                "name": "Melvin Denise",
+                "image": ""
+            }
+        ],
+        "receiver": [
+            {
+                "id": 3,
+                "name": "Ada Kenneth",
+                "image": ""
+            }
+        ],
+        "from": "Yaounde",
+        "to": "Limbe",
+        "description": "To Ada Kenneth in Limbe",
+        "date_sent": "7rd March, 2023 11:50AM",
+        "approx_delivery_date": "07th March, 2023 7:30PM",
+        "status": "Delivered",
+        "package_id": "#00458iy6fb"
+    },
+
+    {
+        "name": "Groceries",
+        "image": "../../assets/img/delivery1.jpeg",
+        "type": [
+            {
+                "id": 1,
+                "name": "Groceries"
+            }
+        ],
+        "sender": [
+            {
+                "id": 2,
+                "name": "Melvin Denise",
+                "image": ""
+            }
+        ],
+        "receiver": [
+            {
+                "id": 3,
+                "name": "Ada Kenneth",
+                "image": ""
+            }
+        ],
+        "from": "Yaounde",
+        "to": "Limbe",
+        "description": "To Ada Kenneth in Limbe",
+        "date_sent": "7rd March, 2023 11:50AM",
+        "approx_delivery_date": "07th March, 2023 7:30PM",
+        "status": "On Process",
+        "package_id": "#00458iy6fb"
+    }
+]

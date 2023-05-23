@@ -1,0 +1,114 @@
+[    
+    {   
+        "user": "Dave",
+        "fullname": "Dave Ache",
+        "image": "https://i.pravatar.cc/300?u=b",
+        "message":[
+            {
+                "date":"2014-02-11T14:41:17.000Z",
+                "user":"Dave",
+                "message":"Dave changed the subject to “Test Chat”"
+            },
+            {
+                "date":"2014-02-11T14:41:24.000Z",
+                "user":"Dave",
+                "message":"Avatars can be used by themselves or inside of any element. If placed inside of an ion-chip or ion-item, the avatar will resize to fit the parent component. To posi"
+            },
+            {
+                "date":"2014-02-11T14:41:24.000Z",
+                "user":"You",
+                "message":"Welcome to Codewithrandom with a new blog, today we will see 15+ CSS Chat Box Design using HTML and CSS. Let us first understand what chatting is and how by using CSS we can implement amazing Chat Box interfaces."
+            },
+            {
+                "date":"2014-02-11T14:41:25.000Z",
+                "user":"Dave",
+                "message":"Dave was added"
+            },
+            {
+                "date":"2014-02-11T14:41:38.000Z",
+                "user":"Dave",
+                "message":"Testing testing, this is a test message"
+            },
+            {
+                "date":"2014-02-11T14:42:32.000Z",
+                "user":"Dave",
+                "message":"Testing again."
+            },
+            {
+                "date":"2014-02-11T14:42:43.000Z",
+                "user":"You",
+                "message":"Still testing...?"
+            }
+        ]
+    },
+    {
+        "user": "John",
+        "fullname": "John Showman",
+        "image": "https://i.pravatar.cc/300?u=c",
+        "message":[
+            {"date":"2014-02-11T14:41:17.000Z","user":"John","message":"John changed the subject to “Test Chat”"},
+            {"date":"2014-02-11T14:41:24.000Z","user":"John","message":"John was added"},
+            {"date":"2014-02-11T14:41:24.000Z","user":"You","message":"You were added"},
+            {"date":"2014-02-11T14:41:25.000Z","user":"John","message":"John was added"},
+            {"date":"2014-02-11T14:41:38.000Z","user":"John","message":"Testing testing, this is a test message"},
+            {"date":"2014-02-11T14:42:32.000Z","user":"You","message":"Testing again."},
+            {"date":"2014-02-11T14:42:43.000Z","user":"You","message":"Still testing...?"}
+        ]
+    },
+    {
+        "user": "Richie",
+        "fullname": "Richie Anderson",
+        "image": "https://i.pravatar.cc/300?u=a",
+        "message":[
+            {"date":"2014-02-11T14:41:17.000Z","user":"Richie","message":"Richie changed the subject to “Test Chat”"},
+            {"date":"2014-02-11T14:41:24.000Z","user":"Richie","message":"Richie was added"},
+            {"date":"2014-02-11T14:41:24.000Z","user":"You","message":"You were added"},
+            {"date":"2014-02-11T14:41:25.000Z","user":"You","message":"John was added"},
+            {"date":"2014-02-11T14:41:38.000Z","user":"Richie","message":"Testing testing, this is a test message"},
+            {"date":"2014-02-11T14:42:32.000Z","user":"Richie","message":"Testing again."},
+            {"date":"2014-02-11T14:42:43.000Z","user":"You","message":"Still testing...?"}
+        ]
+    },
+    {
+        "user": "Mercy",
+        "fullname": "Mercy Johnson",
+        "image": "https://i.pravatar.cc/300?u=d",
+        "message":[
+            {"date":"2014-02-11T14:41:17.000Z","user":"Mercy","message":"Mercy changed the subject to “Test Chat”"},
+            {"date":"2014-02-11T14:41:24.000Z","user":"Mercy","message":"Mercy was added"},
+            {"date":"2014-02-11T14:41:24.000Z","user":"You","message":"You were added"},
+            {"date":"2014-02-11T14:41:25.000Z","user":"You","message":"You was added"},
+            {"date":"2014-02-11T14:41:38.000Z","user":"Mercy","message":"Testing testing, this is a test message"},
+            {"date":"2014-02-11T14:42:32.000Z","user":"Mercy","message":"Testing again."},
+            {"date":"2014-02-11T14:42:43.000Z","user":"You","message":"Still testing...?"}
+        ]
+    },
+    {
+        "user": "Fabouel",
+        "fullname": "Fabouel Chinedu",
+        "image": "https://i.pravatar.cc/300?u=e",
+        "message":[
+            {"date":"2014-02-11T14:41:17.000Z","user":"Fabouel","message":"Fabouel changed the subject to “Test Chat”"},
+            {"date":"2014-02-11T14:41:24.000Z","user":"Fabouel","message":"Fabouel was added"},
+            {"date":"2014-02-11T14:41:24.000Z","user":"You","message":"You were added"},
+            {"date":"2014-02-11T14:41:25.000Z","user":"Fabouel","message":"Fabouel was added"},
+            {"date":"2014-02-11T14:41:38.000Z","user":"Fabouel","message":"Testing testing, this is a test message"},
+            {"date":"2014-02-11T14:42:32.000Z","user":"You","message":"Testing again."},
+            {"date":"2014-02-11T14:42:43.000Z","user":"You","message":"Still testing...?"}
+        ]
+    },
+    {
+        "user": "Ochina",
+        "fullname": "Ochina Chinedu",
+        "image": "https://i.pravatar.cc/300?u=e",
+        "message":[
+            {"date":"2014-02-11T14:41:17.000Z","user":"Fabouel","message":"Fabouel changed the subject to “Test Chat”"},
+            {"date":"2014-02-11T14:41:24.000Z","user":"Fabouel","message":"Fabouel was added"},
+            {"date":"2014-02-11T14:41:24.000Z","user":"You","message":"You were added"},
+            {"date":"2014-02-11T14:41:25.000Z","user":"Fabouel","message":"Fabouel was added"},
+            {"date":"2014-02-11T14:41:38.000Z","user":"Fabouel","message":"Testing testing, this is a test message"},
+            {"date":"2014-02-11T14:42:32.000Z","user":"You","message":"Testing again."},
+            {"date":"2014-02-11T14:42:43.000Z","user":"You","message":"Still testing...?"}
+        ]
+    }
+]
