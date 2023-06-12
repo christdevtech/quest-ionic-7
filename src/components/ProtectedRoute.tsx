@@ -9,7 +9,7 @@ interface Props {
 const ProtectedRoute = ({ children }: Props) => {
   const { user } = useAuthContext() ?? { user: undefined };
   if (!user) {
-    return <Redirect to="/locale" />;
+    return <Redirect to="/sign-in" />;
   }
   return children;
 };

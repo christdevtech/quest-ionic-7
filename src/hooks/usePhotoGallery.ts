@@ -77,6 +77,7 @@ export function usePhotoGallery() {
       return {
         filepath: savedFile.uri,
         webviewPath: Capacitor.convertFileSrc(savedFile.uri),
+        format: photo.format,
       };
     } else {
       // Use webPath to display the new image instead of base64 since it's
@@ -84,6 +85,7 @@ export function usePhotoGallery() {
       return {
         filepath: fileName,
         webviewPath: photo.webPath,
+        format: photo.format,
       };
     }
   };
@@ -114,6 +116,7 @@ export function usePhotoGallery() {
 export interface UserPhoto {
   filepath: string;
   webviewPath?: string;
+  format?: string;
 }
 
 export async function base64FromPath(path: string): Promise<string> {

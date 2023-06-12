@@ -23,7 +23,8 @@ import { useAuthContext } from "../../context/AuthContext";
 import { refreshOutline } from "ionicons/icons";
 
 export default function SignIn() {
-  const { login, setResetPassword, langPack } = useAuthContext() ?? {};
+  const { login, setResetPassword, langPack, userdbData, user, getdbUserData } =
+    useAuthContext() ?? {};
 
   let [loading, setLoading] = useState(false);
 
@@ -70,6 +71,20 @@ export default function SignIn() {
     }, 2000);
   });
 
+  useEffect(() => {
+    const goToHome = () => {
+      if (userdbData) {
+        history.push("/home");
+      } else if (user) {
+        getdbUserData?.();
+      }
+    };
+
+    return () => {
+      goToHome();
+    };
+  }, []);
+
   const toSignUpPage = () => {
     history.push("/phone-login");
   };
@@ -97,10 +112,9 @@ export default function SignIn() {
                     <IonCol size="12" className="space-types">
                       <IonList>
                         <IonItem color="dark">
-                          <IonLabel position="floating">
-                            {langPack.email}
-                          </IonLabel>
                           <IonInput
+                            label={langPack.email}
+                            labelPlacement="floating"
                             type="email"
                             id="email"
                             {...register("email", { required: true })}
@@ -110,10 +124,9 @@ export default function SignIn() {
                           <IonNote>{langPack.requiredFull}</IonNote>
                         )}
                         <IonItem color="dark">
-                          <IonLabel position="floating">
-                            {langPack.password}
-                          </IonLabel>
                           <IonInput
+                            label={langPack.password}
+                            labelPlacement="floating"
                             type="password"
                             id="password"
                             {...register("password", { required: true })}
@@ -125,18 +138,20 @@ export default function SignIn() {
                         <IonItem lines="none">
                           <IonToggle
                             id="keepLoggedIn"
-                            slot="start"
+                            labelPlacement="start"
                             checked
                             onIonChange={stayInStatus}
                             // {...register("keepLoggedIn", { required: true })}
-                          ></IonToggle>
-                          <IonLabel>{langPack.keepLoggedIn}</IonLabel>
+                          >
+                            {langPack.keepLoggedIn}
+                          </IonToggle>
                         </IonItem>
                         <IonButton
                           expand="block"
                           shape="round"
                           type="submit"
                           className="yellow-b"
+                          color="warning"
                         >
                           {loading ? (
                             <IonIcon

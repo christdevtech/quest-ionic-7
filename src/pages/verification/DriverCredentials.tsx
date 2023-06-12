@@ -20,16 +20,19 @@ import {
   personOutline,
   trash,
 } from "ionicons/icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import logo from "../../assets/Logo-only.svg";
 import { useAuthContext } from "../../context/AuthContext";
 import UploadSelfie from "./driverVerificationSteps/UploadSelfie";
+import UploadDriverLicense from "./driverVerificationSteps/UploadDriverLicense";
 // import { VerifyHandler } from "../../context/VerifyContext";
 
 function DriverCredentials() {
-  const { userdbData } = useAuthContext() ?? {};
-  // const { currentStep } = VerifyHandler();
+  const { userdbData, verifyStep, setVerifyStep } = useAuthContext() ?? {
+    verifyStep: 1,
+  };
+
   const {
     register,
     handleSubmit,
@@ -39,16 +42,29 @@ function DriverCredentials() {
   const onSubmit = (data: any) => {
     console.log(data);
   };
+  useEffect(() => {
+    const updateStage = () => {
+      setVerifyStep?.(userdbData.verifyStep);
+    };
+
+    return () => {
+      updateStage();
+    };
+  }, [userdbData]);
 
   return (
     <IonPage>
       <IonContent>
         <div className="verify-header">
-          <img src={logo} alt="logo" />
+          <img src={logo} alt="logo" id="quest-logo" />
           <h1>Verify your Account</h1>
-          <span>Please provide all the required information</span>
+          <span>
+            Please provide all the required information <br />
+            Step {verifyStep}
+          </span>
         </div>
-        <UploadSelfie />
+        {verifyStep === 1 && <UploadSelfie />}
+        {verifyStep === 2 && <UploadDriverLicense />}
       </IonContent>
     </IonPage>
   );

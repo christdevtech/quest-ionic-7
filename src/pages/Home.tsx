@@ -1,36 +1,14 @@
-import {
-  IonButton,
-  IonCol,
-  IonContent,
-  IonGrid,
-  IonIcon,
-  IonImg,
-  IonLoading,
-  IonMenuButton,
-  IonPage,
-  IonRow,
-} from "@ionic/react";
-import Logo from "../assets/Logo-only.svg";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { IonContent, IonPage, IonSpinner } from "@ionic/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useAuthContext } from "../context/AuthContext";
 import {
-  // bedOutline,
-  // bedSharp,
-  // busOutline,
-  // busSharp,
-  // carOutline,
-  // carSharp,
   carSport,
   carSportOutline,
   carSportSharp,
-  // cartOutline,
-  // cartSharp,
   cubeOutline,
   cubeSharp,
 } from "ionicons/icons";
-import { Link } from "react-router-dom";
 import UserHome from "./userViews/UserHome";
 import { useEffect, useState } from "react";
 import DriverTaxiHome from "./cabDriverViews/DriverTaxiHome";
@@ -98,12 +76,12 @@ export default function Home() {
   return (
     <IonPage>
       {!userdbData && (
-        <IonContent>
-          {/* <IonLoading isOpen={loading}></IonLoading> */}
-          <p>
-            Internet Connectivity issues... <br /> Checking
-          </p>
-        </IonContent>
+        <>
+          <IonContent className="centralize">
+            <p>Connecting to Quest Taxi Database</p>
+            <IonSpinner name="circular"></IonSpinner>
+          </IonContent>
+        </>
       )}
 
       {userdbData && userdbData.accountType === "user" && <UserHome />}

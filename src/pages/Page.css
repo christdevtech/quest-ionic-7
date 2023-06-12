@@ -17,6 +17,7 @@ ion-content.auth-page {
 
 ion-content.settings-page {
 }
+
 ion-list.list-md {
   background: var(--transparent);
 }

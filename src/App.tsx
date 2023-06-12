@@ -7,7 +7,6 @@ import {
 import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router-dom";
 import Menu from "./components/Menu";
-import Page from "./pages/Page";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -44,6 +43,7 @@ import LiveTrack from "./pages/userViews/delivery/LiveTracking";
 import TaxiHome from "./pages/userViews/TaxiHome";
 import UserDetails from "./pages/UserDetails";
 import Chat from "./pages/Chat";
+import "./scss/global.scss";
 
 setupIonicReact();
 

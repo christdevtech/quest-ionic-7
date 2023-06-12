@@ -13,6 +13,7 @@ import {
   IonMenu,
   IonMenuToggle,
   IonRow,
+  IonToast,
 } from "@ionic/react";
 import { useHistory, useLocation } from "react-router-dom";
 import {
@@ -35,6 +36,7 @@ import {
 import "./Menu.css";
 import defaultImg from "../assets/user.svg";
 import { useAuthContext } from "../context/AuthContext";
+import { useEffect } from "react";
 
 interface AppPage {
   url: string;
@@ -44,7 +46,15 @@ interface AppPage {
 }
 
 const Menu: React.FC = () => {
-  const { user, logout, langPack } = useAuthContext() ?? {};
+  const {
+    user,
+    logout,
+    langPack,
+    processInfo,
+    setProcessInfo,
+    currentMessage,
+    setCurrentMessage,
+  } = useAuthContext() ?? {};
 
   const appPages: AppPage[] = [
     {
@@ -100,6 +110,16 @@ const Menu: React.FC = () => {
   const handleRefresh = () => {
     window.location.reload();
   };
+
+  useEffect(() => {
+    const openToast = () => {
+      setProcessInfo?.(true);
+    };
+
+    return () => {
+      openToast();
+    };
+  }, [currentMessage]);
 
   return (
     <IonMenu contentId="main" type="overlay">
@@ -201,6 +221,13 @@ const Menu: React.FC = () => {
             </IonMenuToggle>
           ))}
         </IonFooter>
+
+        <IonToast
+          isOpen={processInfo}
+          message={currentMessage}
+          onDidDismiss={() => setProcessInfo?.(false)}
+          duration={5000}
+        ></IonToast>
       </IonContent>
     </IonMenu>
   );

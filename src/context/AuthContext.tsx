@@ -13,7 +13,7 @@ import {
   User,
   UserCredential,
 } from "firebase/auth";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import { auth, db, storage } from "../../firebase";
 import { en, fr } from "./Translation";
 import { uploadBytes, getDownloadURL, ref } from "firebase/storage";
@@ -51,6 +51,12 @@ interface AuthContextValue {
   getdbUserData: () => Promise<void>;
   uploadProfilePicture: (file: File, userPhotoURLRef: any) => Promise<void>;
   validated: boolean;
+  verifyStep: number;
+  setVerifyStep: (step: number) => void;
+  currentMessage: string;
+  setCurrentMessage: (message: string) => void;
+  processInfo: boolean;
+  setProcessInfo: (state: boolean) => void;
 }
 
 const UserContext = createContext<AuthContextValue | undefined>(undefined);
@@ -67,6 +73,9 @@ export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({
   const [otpSucceeded, setOtpSucceeded] = useState(false);
   const [accountType, setAccountType] = useState("");
   const [validated, setValidated] = useState(false);
+  const [verifyStep, setVerifyStep] = useState(1);
+  const [currentMessage, setCurrentMessage] = useState("Welcome to Quest Taxi");
+  const [processInfo, setProcessInfo] = useState(false);
 
   auth.languageCode = language;
   let userDocSnap: any = undefined;
@@ -112,11 +121,11 @@ export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({
     let appVerifier = (window as any).recaptchaVerifier;
     signInWithPhoneNumber(auth, phoneNumber, appVerifier)
       .then((confirmationResult) => {
-        console.log("code requested");
+        setCurrentMessage("code requested");
         (window as any).confirmationResult = confirmationResult;
       })
       .catch((error) => {
-        console.log(error);
+        setCurrentMessage(error.message);
       });
   };
 
@@ -168,9 +177,9 @@ export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({
         await updateProfile(user, {
           displayName: displayName,
         });
-        console.log("Display Name updated to " + displayName);
-      } catch (error) {
-        console.log(error);
+        setCurrentMessage("Display Name updated to " + displayName);
+      } catch (error: any) {
+        setCurrentMessage(error.message);
       }
 
       try {
@@ -183,9 +192,9 @@ export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({
 
       try {
         await updateEmail(user, email);
-        console.log("Email updated to " + email);
-      } catch (error) {
-        console.log(error);
+        setCurrentMessage("Email updated to " + email);
+      } catch (error: any) {
+        setCurrentMessage(error.message);
       }
 
       try {
@@ -198,9 +207,10 @@ export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({
           language: language,
           wallet: 0,
           validated: validated,
+          verifyStep: 1,
         });
-      } catch (error) {
-        console.log(error);
+      } catch (error: any) {
+        setCurrentMessage(error.message);
       }
     }
   };
@@ -212,9 +222,9 @@ export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({
         await updateProfile(user, {
           photoURL: photoURL,
         });
-        console.log("Photo URL updated to " + photoURL);
-      } catch (error) {
-        console.log(error);
+        setCurrentMessage("Photo URL updated to " + photoURL);
+      } catch (error: any) {
+        setCurrentMessage(error.message);
       }
     }
   };
@@ -224,10 +234,10 @@ export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({
     if (user) {
       updatePassword(user, password)
         .then(() => {
-          console.log("Password updated to " + password);
+          setCurrentMessage("Password updated");
         })
         .catch((error) => {
-          console.log(error);
+          setCurrentMessage(error.message);
         });
     }
   };
@@ -238,10 +248,12 @@ export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({
 
   const logout = () => {
     return signOut(auth);
+    setCurrentMessage("Signed Out Successfully");
   };
 
   const chooseAccountType = (type: string) => {
     setAccountType(type);
+    setCurrentMessage("Account type set to " + type);
     if (type === "User / Client") {
       setValidated(true);
     } else {
@@ -270,7 +282,8 @@ export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({
 
   const uploadProfilePicture = async (file: File, userPhotoURLRef: any) => {
     try {
-      const storageRef = ref(storage, `user-profile-pictures/${user.uid}`);
+      const storageRef = ref(storage, `users/${user.uid}`);
+      setCurrentMessage("Uploading profile Photo");
       const snapshot = await uploadBytes(storageRef, file);
       const downloadURL = await getDownloadURL(snapshot.ref);
 
@@ -278,12 +291,12 @@ export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({
         photoURL: downloadURL,
       });
 
-      setDoc(doc(db, "users", user.uid), {
-        photoURL: downloadURL,
-      });
+      // setDoc(doc(db, "users", user.uid), {
+      //   photoURL: downloadURL,
+      // });
 
       userPhotoURLRef.current = downloadURL;
-      console.log("Profile picture uploaded");
+      setCurrentMessage("Profile picture uploaded");
     } catch (error) {
       console.log(error);
     }
@@ -296,6 +309,39 @@ export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({
 
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    if (userdbData) {
+      const updateVerificationStep = () => {
+        if (userdbData.verifyStep) setVerifyStep(userdbData.verifyStep);
+      };
+
+      return () => {
+        updateVerificationStep();
+      };
+    } else {
+      getdbUserData();
+    }
+  }, [userdbData]);
+
+  useEffect(() => {
+    if (userdbData) {
+      const updateUserdbData = async () => {
+        if (verifyStep !== userdbData.verifyStep) {
+          console.log("Uploading the new verifyStep");
+          const userRef = doc(db, "users", user.uid);
+          await updateDoc(userRef, {
+            verifyStep: verifyStep,
+          });
+          getdbUserData();
+        }
+      };
+
+      return () => {
+        updateUserdbData();
+      };
+    }
+  }, [verifyStep]);
 
   return (
     <UserContext.Provider
@@ -324,6 +370,12 @@ export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({
         getdbUserData,
         uploadProfilePicture,
         validated,
+        verifyStep,
+        setVerifyStep,
+        currentMessage,
+        setCurrentMessage,
+        processInfo,
+        setProcessInfo,
       }}
     >
       {children}
